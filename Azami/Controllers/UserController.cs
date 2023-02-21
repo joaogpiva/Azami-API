@@ -53,5 +53,15 @@ namespace Azami.Controllers
             bool wasDeleted = await _userRepository.DeleteUser(id);
             return Ok(wasDeleted);
         }
+        [HttpGet("login")]
+        public async Task<ActionResult<UserModel>> Login(string email, string password)
+        {
+            UserModel foundUser = await _userRepository.Login(email, password);
+            if (foundUser == null)
+            {
+                return NotFound("User not found in database");
+            }
+            return Ok(foundUser);
+        }
     }
 }

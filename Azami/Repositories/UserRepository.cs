@@ -58,5 +58,14 @@ namespace Azami.Repositories
             await _dbContext.SaveChangesAsync();
             return userToUpdate;
         }
+
+        public async Task<UserModel> Login(string email, string password)
+        {
+            UserModel foundUser = await _dbContext.Users.Where(
+                x => x.Email == email && x.MasterPassword == password
+            ).FirstOrDefaultAsync();
+
+            return foundUser;
+        }
     }
 }

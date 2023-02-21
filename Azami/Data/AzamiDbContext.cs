@@ -15,6 +15,8 @@ namespace Azami.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.Entity<UserModel>().Property(u => u.MasterPassword)
+                .UseCollation("latin1_general_cs");
             base.OnModelCreating(modelBuilder);
         }
     }
