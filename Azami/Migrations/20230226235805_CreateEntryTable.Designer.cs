@@ -2,6 +2,7 @@
 using Azami.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Azami.Migrations
 {
     [DbContext(typeof(AzamiDbContext))]
-    partial class AzamiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230226235805_CreateEntryTable")]
+    partial class CreateEntryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +49,7 @@ namespace Azami.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Entries", (string)null);
+                    b.ToTable("Entries");
                 });
 
             modelBuilder.Entity("Azami.Models.UserModel", b =>
@@ -73,7 +76,7 @@ namespace Azami.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Azami.Models.EntryModel", b =>

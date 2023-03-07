@@ -27,6 +27,7 @@ namespace Azami
                 );
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IEntryRepository, EntryRepository>();
 
             builder.Services.AddCors(options =>
             {
@@ -47,13 +48,12 @@ namespace Azami
 
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
-            app.UseCors();
 
             app.MapControllers();
 

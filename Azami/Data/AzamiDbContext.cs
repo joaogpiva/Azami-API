@@ -11,12 +11,12 @@ namespace Azami.Data
         }
 
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<EntryModel> Entries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserMap());
-            modelBuilder.Entity<UserModel>().Property(u => u.MasterPassword)
-                .UseCollation("latin1_general_cs");
+            modelBuilder.ApplyConfiguration(new EntryMap());
             base.OnModelCreating(modelBuilder);
         }
     }
